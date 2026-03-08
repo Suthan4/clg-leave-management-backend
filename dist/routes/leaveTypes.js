@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const leaveTypeController_1 = require("../controllers/leaveTypeController");
+const auth_1 = require("../middleware/auth");
+const router = (0, express_1.Router)();
+router.get('/', auth_1.protect, leaveTypeController_1.getLeaveTypes);
+router.get('/all', auth_1.protect, auth_1.adminOnly, leaveTypeController_1.getAllLeaveTypes);
+router.post('/', auth_1.protect, auth_1.adminOnly, leaveTypeController_1.createLeaveType);
+router.put('/:id', auth_1.protect, auth_1.adminOnly, leaveTypeController_1.updateLeaveType);
+router.delete('/:id', auth_1.protect, auth_1.adminOnly, leaveTypeController_1.deleteLeaveType);
+exports.default = router;
